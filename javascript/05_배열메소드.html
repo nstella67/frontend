@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>05_배열메소드.html</title>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div id="demo"></div>
+		<script>
+			//배열 관련 메소드
+			/*
+			var fruits = ["Banana", "Orange", "Apple", "Mango"];
+
+			//Banana, Orange, Apple, Mango
+			document.write(fruits.toString());
+			document.write("<hr>");
+
+			//Banana * Orange * Apple * Mango
+			document.write(fruits.join("*"));
+			document.write("<hr>");
+
+			//Banana, Orange, Apple
+			fruits.pop();	//배열 마지막 요소 제거
+			document.write(fruits.toString());
+			document.write("<hr>");
+			
+			//Banana, Orange, Apple, Kiwi
+			fruits.push("Kiwi");	//배열 마지막 요소 추가
+			document.write(fruits.toString());
+			document.write("<hr>");
+
+			//Apple, Kiwi
+			fruits.splice(0, 2);	//0번째, 1번째 제거
+			document.write(fruits.toString());
+			document.write("<hr>");
+			*/
+			//----------------------------------------------------------------------
+			//Array Sort
+			var fruits = ["Banana", "Orange", "Apple", "Mango"];
+			//Apple, Banana, Mango, Orange
+			fruits.sort();	//오름차순 정렬
+			document.write(fruits.toString());
+			document.write("<hr>");
+
+			//Orange,Mango,Banana,Apple
+			fruits.reverse();	//내림차순 정렬
+			document.write(fruits.toString());
+			document.write("<hr>");
+
+			//Numeric Sort
+			var points=[40, 100, 1, 5, 25, 10];
+
+			//1,5,10,25,40,100
+			points.sort(function(a, b){return a - b});
+			document.write(points.toString());
+			document.write("<hr>");
+
+			//100,40,25,10,5,1
+			points.sort(function(a, b){return b - a});
+			document.write(points.toString());
+			document.write("<hr>");
+		</script>
+	</body>
+</html>

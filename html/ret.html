@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>20_rotate.html</title>
+  <style>
+	#menu{background:silver;
+	      position:relative;
+		  width:150px;
+		  height:130px;
+		  margin:auto;/*가운데정렬*/
+		  border-radius:10px; /*CSS3*/
+		  cursor:pointer;/*커서손모양*/}
+	#menu:hover{background:orange;}
+	#menu>strong{position:absolute;/*절대적위치*/
+	             left:35px; bottom:15px;}
+	#menu>.gear{position:absolute;
+	            width:100px;
+				height:100px;
+	            background-image:url("../images/gear-grey.png")
+			   }
+  </style>
+ </head>
+ <body>
+   <div id="menu">
+     <div class="gear"></div>
+     <strong>SETTINGS</strong>
+   </div>
+ </body>
+</html>

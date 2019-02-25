@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>01_자바스크립트기본문법.html</title>
+		<style>
+			/*스타일*/
+		</style>
+	</head>
+	<body>
+		<!-- HTML 본문영역 -->
+		<div id="demo"></div>
+
+		<script>
+			//Javascript영역
+			//한 줄 주석
+			/*여러 줄 주석*/
+			/*
+				- Interpreter방식의 스크립트언어
+				- Server Side Interface
+				- on Server : JSP, ASP, PHP
+				- 대소문자를 구분한다
+				- 종결문자 ;
+				- 변수의 자료형의 종류가 없다 (boolean, char, int, double)
+				- 변수를 반드시 선언하지 않아도 된다
+					변수선언형식) var 변수명
+				- 함수의 리턴형이 없다 (리턴값은 존재함)
+					함수선언형식) function 함수이름(){}
+				- 이벤트를 발생시켜 함수를 호출하는 방식으로 대부분 실행한다
+				----------------------------------------------------------------------------
+				1) 자바스크립트는 Object(객체)로 구성되어 있다
+					- Object : field, method로 구성되어 있다
+					- 자바스크립트의 최사위 객체 : window
+					- window 객체명은 생략할 수 있다
+					- property,속성,변수	: window.status
+					- method,함수			: window.alert()
+			*/
+			//window.alert();	//확인.경고창
+			//alert();
+			//alert("대한민국");
+			//alert('코리아');
+			//alert("오필승\n무궁화\n피었습니다")
+			//alert("\"");				//"
+			//alert('\'');				//'
+			//alert("\\");			//\
+
+			//window.confirm();	//확인/취소 true/false
+			//confirm("영구히 삭제됩니다\n지울까요?");
+
+			//--------------------------------------------------
+			//2) 변수의 자료형은 variant만 있다
+			//		값이 변수에 대입이 되는 순간 자료형이 결정된다
+			var name="홍길동";
+			var age=20;
+			var height=178.5;
+			//alert("이름:"+name);
+			//alert("나이:"+age);
+			//alert("키:"+height);
+			var str="";
+			str+="이름:"+name+"\n";
+			str+="나이:"+age+"\n";
+			str+="키:"+height;
+			//alert(str);
+
+			var now=new Date();	//날짜 데이터
+			var cars=[];				//배열
+			//---------------------------------------------------------------
+			//3) document 객체 : 웹페이지의 본문에 해당하는 <body>가리키는 객체
+			/*
+			document.write(123);
+			document.write("대한민국");
+			document.write("456");
+			document.write("<hr>");		//tag접근시 ""안에서 사용
+			document.write("786<br><br>123");
+			document.write("<strong>솔데스크</strong>");
+			document.write("<img src='../images/tenor (6).gif'>");
+			*/
+			//--------------------------------------------------------------
+			//4) 본문에 있는 id 속성을 접근
+			//JavaScript
+			//document.getElementById("demo").innerHTML="대한민국";
+			//jQuery
+			//$("#demo").val("무궁화");
+			var uname="오필승";
+			var age=20;
+			var height=175.6;
+			var table="";
+			table += "<table border='1'>";
+			table += "<tr>";
+			table += "	<td>이름</td>";
+			table += "	<td>"+uname+"</td>";
+			table += "</tr>";
+			table += "<tr>";
+			table += "	<td>나이</td>";
+			table += "	<td>"+age+"</td>";
+			table += "</tr>";
+			table += "<tr>";
+			table += "	<td>키</td>";
+			table += "	<td>"+height+"</td>";
+			table += "</tr>";
+			table += "</table>";
+
+			document.getElementById("demo").innerHTML=table;
+		</script>
+	</body>
+</html>

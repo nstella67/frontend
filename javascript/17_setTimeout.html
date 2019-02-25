@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>17_setTimeout.html</title>
+		<style></style>
+	</head>
+	<body>
+		<script>
+		/*
+			setInterval("함수()", 시간) : 주기적으로 호출
+			setTimeout(함수명, 시간) : 한번만 호출
+			시간 : 1000 ms = 1second
+			시간해제 : clearInterval()
+						  clearTimeout()
+		*/
+		
+			//3초마다 반복적으로 경고창 출력
+			//setInterval(function(){ alert("Hello"); }, 3000);
+
+			setTimeout(function(){ alert("Hello"); },3000);
+
+		</script>
+	</body>
+</html>

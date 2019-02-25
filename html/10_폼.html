@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>10_폼.html</title>
+	</head>
+	<body>
+		<!-- 입력양식(폼컨트롤) -->
+		<input type="button" value="확인"/>
+		<input type="button" value="검색"/>
+		<button>회원가입</button>		<!-- 기본속성 submit -->
+		<hr>
+		<!-- 입력폼을 서버로 전송 -->
+		<input type="submit" value="등록"/>
+		<!-- 사용자가 입력한 내용을 취소 -->
+		<input type="reset" value="취소"/>
+		<hr>
+		
+		* 회원가입 *<br>
+		<!-- 폼관련 속성들
+					name=""		폼이름
+					id=""				폼이름
+					method=""		전송방식( get 방식 | post 방식 )
+					action=""		서버에서 요청한 입력 값을 받는 페이지 및 명령어
+					enctype="multipart/form-data"		파일 첨부해서 전송하는 경우
+
+		form안에 form 올 수 없다 
+		-->
+		<form	name="memfrm" id="memfrm"
+					method="post" action="ok.jsp" enctype="">
+			아이디 : <input type="text" name="userid" id="userid"
+								  size="10" maxlength="8" placeholder="아이디">
+			<hr>
+			비밀번호 : <input type="password" name="userpw" id="userpw"
+									  size="15" maxlength="10" placeholder="비밀번호">
+			<hr>
+			이름 : <input type="text" name="usernm" id="usernm"
+								size="20" maxlength="20" autofocus>
+			<hr>
+			우편번호 : <input type="text" name="zipcode" id="zipcode"
+									  size="5" readonly>
+							<input type="button" value="주소찾기">
+			<hr>
+			<!-- radio, checkbox는 boolean 값을 갖는다 -->
+			성별 :	<input type="radio" name="gender" value="m">남
+						<input type="radio" name="gender" value="f" checked>여
+								<!-- 둘 중 하나만 선택 가능		checked : 미리선택돼있음 -->
+			<hr>
+			취미 :	<input type="checkbox" name="h1" value="movie">영화
+						<input type="checkbox" name="h2" value="mountain">등산
+						<input type="checkbox" name="h3" value="cook" checked>요리
+			<hr>
+			생년월일 : <select name="myYear" id="myYear">
+								<option value="2018">2018년
+								<option value="2017" selected>2017년
+								<!-- selected : 미리선택 -->
+								<option value="2016">2016년
+							</select>
+							<select name="myMonth" id="myMonth" multiple>
+								<!-- multiple : ctrl를 이용해서 여러 개 선택 가능 -->
+								<option value="1">1월
+								<option value="2">2월
+								<option value="3">3월
+							</select>
+			<hr>
+			배송메세지 : <textarea rows="5" cols="30">경비실에 맡겨주세요
+							   </textarea>
+			<!-- 입력폼을 서버로 전송 -->
+			<input type="submit" value="회원가입"/>
+			<!-- 사용자가 입력한 내용을 취소 -->
+			<input type="reset" value="취소"/>
+		</form>
+
+		<!-- 파일 첨부해서 전송 -->
+		<form action="" enctype="multipart/form-data">
+			첨부파일 : <input type="file" name="filenm">
+		</form>
+		<hr>
+
+		<form>
+			<!-- image : 기본속성은 submit 기능이 들어가 있음 -->
+			<input type="image" src="../images/tenor.gif">
+			<!-- hidden : 웹페이지에 노출되지 않지만, 폼에 포함된 컨트롤 요소임 -->
+			<input type="hidden" name="page" value="3">
+		</form>
+		<hr>
+
+		<!-- HTML5에 추가된 다양한 input types -->
+		<form>
+		<input type="color" name="favcolor">
+		<input type="date" name="bday">
+		<input type="email" name="email">
+		<input type="number" name="quantity" min="1" max="5">
+		<input type="range" name="points" min="0" max="10">
+		<input type="search" name="googlesearch">
+		</form>
+
+	</body>
+</html>

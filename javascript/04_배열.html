@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>04_배열.html</title>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<script>
+			//배열 Array, element 요소, index 순서
+			/*
+			//-------------------------------------------old version
+			var cars = new Array("Saab", "Volvo", "BMW");
+			for(idx=0; idx<cars.length; idx++){
+				document.write(cars[idx]);
+				document.write("<br>");
+			}
+
+			//-------------------------------------------new version
+			var cars = ["Saab", "Volvo", "BMW"];
+			for(idx=0; idx<cars.length; idx++){
+				document.write(cars[idx]);
+				document.write("<br>");
+			}
+			*/
+
+			/*Avoid new Array()
+			var points = new Array();     // Bad
+			var points = [];              // Good 
+			var points = new Array(40, 100, 1, 5, 25, 10); // Bad
+			var points = [40, 100, 1, 5, 25, 10];          // Good
+			*/
+			/*
+			var cars=[];	//배열선언
+			cars[0]="Saab";
+			cars[1]="Volvo";
+			cars[2]="BMW";
+			document.write(cars);	//배열 전체 요소 값
+			*/
+			var fruits = ["Banana", "Orange", "Apple", "Mango"];
+			fruits[6] = "Lemon";    // adds a new element (Lemon) to fruits
+			document.write(fruits.length);	//7
+			document.write(fruits);			//Banana,Orange,Apple,Mango,,,Lemon
+			document.write(fruits[4]);		//undefined
+			document.write(fruits[5]);		//undefined
+		</script>
+	</body>
+</html>

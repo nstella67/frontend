@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>19_rotate.html</title>
+		<style>
+			#menu{background:#ffcccc;position:relative;
+						width:150px;height:130px;
+						margin:auto; /*가운데정렬*/
+						border-radius:10px; /*CSS3*/
+						cursor:pointer; /*커서손모양*/
+						}
+			#menu:hover{background:orange;}
+			#menu > strong{position:absolute; /*절대적위치*/
+									  left:42px; bottom:15px;
+									  }
+			#menu>.gear{position:absolute;
+								  width:40px;height:40px;
+								  background-image:url("../images/gear-grey.png");
+								  background-size:40px 40px;
+								  }
+			#menu>.gear:nth-child(1){top:16px; left:46px;}
+			#menu>.gear:nth-child(2){top:47px; left:64px;
+					/*시계방향30도회전*/transform: rotate(30deg);
+													}
+			/*마우스 오버가 되면*/
+			#menu:hover>.gear{background-image:url("../images/gear.png");
+						/*부드럽게*/transition:.4s linear; /*ease | linear*/}
+			#menu:hover>.gear:nth-child(1){transform: rotate(-180deg);}
+			#menu:hover>.gear:nth-child(2){transform: rotate(210deg);}
+		</style>
+	</head>
+	<body>
+		<div id="menu">
+			<div class="gear"></div>
+			<div class="gear"></div>
+			<strong>SETTING</strong>
+		</div>
+	</body>
+</html>

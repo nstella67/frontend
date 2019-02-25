@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>15_레이어.html</title>
+
+		<style>
+			#mylayer{background:yellow; width:100px; height:100px;
+							overflow:scroll;		/* hidden | scroll */
+							display:block;			/* none | block */
+							/* visibility: visible | hidden; */
+							position:absolute;	/* 기준 위치 지정 */
+							top:30px; left:30px; /* 레이어 시작 위치 */
+							z-index:-3;	/* 레이어 순서. 숫자가 클수록 위로 */
+							}
+
+			#wrap{position:absolute; top:50px; left:50px;
+						width:200px; height:200px; background:red;
+						z-index:-1;
+						}
+			#header{background:white; width:100px; height:100px;
+						  top:30px; left:30px;
+						  position:relative;	/* absolute | relative */
+						  }
+			#content{background:green; width:50px; height:50px;
+						   top:30px; left:30px;
+						   position:relative;
+						   }
+		</style>
+	</head>
+
+	<body>
+		<div id="mylayer">
+			대한민국<br>대한민국<br>대한민국<br>대한민국<br>
+			대한민국<br>대한민국<br>대한민국<br>대한민국<br>
+			대한민국<br>대한민국<br>대한민국<br>대한민국<br>
+		</div>
+		<hr>
+
+		<div id="wrap">
+			<div id="header">헤더</div>
+			<div id="content">컨텐츠</div>
+		</div>
+	</body>
+</html>

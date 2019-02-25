@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>13_this.html</title>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<!-- this : 자기 자신의 요소를 가리킴 -->
+		<form name="myform" id="myform"
+				 onsubmit="return test5(this)">	<!--나스스로가form이므로-->
+				 <!--<form>요소에서 this.form은 undefined 주의!!-->
+			<input type="button" name="btn1" id="btn1"
+					  value="버튼1" onclick="test1()">
+			<hr> <!-- this 자신의 요소 -->
+			<input type="button" name="btn2" id="btn2"
+					  value="버튼2" onclick="test2(this)">
+			<hr> <!-- this.value 자신의 요소값 -->
+			<input type="button" name="btn3" id="btn3"
+					  value="버튼3" onclick="test3(this.value)">
+			<hr> <!-- this.form 자신의 요소가 속해있는 폼 -->
+			<input type="button" name="btn4" id="btn4"
+					  value="버튼4" onclick="test4(this.form)">
+			<hr>
+			<input type="submit" value="전송">
+				
+			<!-- 에러
+				this는 폼컨트롤요소에서만 사용가능!!
+				<a href="" onclick="test6(this)"></a>
+			-->
+		</form>
+
+		<script>
+			function test1(){
+				//1) name 접근
+				/*
+				//<form name=myform>
+				alert(document.myform);			//[object HTMLFormElement]
+				//<input type=button name=btn1>
+				alert(document.myform.btn1);  //[object HTMLInputElement]
+
+				var f=document.myform;
+				alert(f);			  //[object HTMLFormElement]
+				alert(f.btn1);		//[object HTMLInputElement]
+
+				var btn1=document.myform.btn1;
+				alert(btn1);		//[object HTMLInputElement]
+				alert(btn1.value);//버튼1
+				*/
+
+				//2) id 접근
+				//<form id=myform>
+				var f=document.getElementById("myform");
+				alert(f);
+
+				//<input type=button id=btn1>
+				var btn1=document.getElementById("btn1");
+				alert(btn1);
+				alert(btn1.value);
+				}//test1() end
+
+			function test2(obj){
+				alert(obj);			//[object HTMLInputElement]
+				alert(obj.value); //버튼2
+			}//test2() end
+
+			function test3(val){
+				alert(val);		//버튼3
+			}//test3() end
+
+			function test4(f){
+				//this.form은 <form name=myform>를 가리킴
+				alert(f);		//[object HTMLFormElement]
+				alert(f.btn4);
+				alert(f.btn4.value);	//버튼4
+			}//test4() end
+
+			function test5(f){
+				alert(f);		//return test5(this.form) → undefined
+								//return test5(this) → [object HTMLFormElement]
+			}//test4() end
+		</script>
+	</body>
+</html>

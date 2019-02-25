@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>12_다양한selector.html</title>
+		<style>
+			/*h1, p { background-color: yellow; }*/
+			/*div p { background-color: yellow; }*/
+			div > p { background-color: yellow; }
+			div > span > p { background-color: green; }
+			body {background-color: #ccffff;}
+			#menu {width: 100px; height: 100px; background: #ccccff;}
+			.hide { width:0px; height:0px;
+					   margin:0px; padding:0px; /*여백*/
+					   font-size:0px;}
+			#navi {background-color:#ffcc33;
+					   margin:auto; /*수평(부모)을 기준으로 가운데 정렬*/
+					   width:300px; height:300px;}
+			#navi>ul {margin:0px; padding:0px; list-style:none;}
+			#navi>ul>li>a {width:200px; height:100px;
+								  text-decoration:none;}
+			#navi>ul>li:nth-child(3) {font-weight:bold}
+		</style>
+	</head>
+
+	<body>
+		<h1>Welcome to My Homepage</h1>
+		<div>
+			<p>My name is Donald.</p>
+			<span><p>I live in Duckburg.</p></span>
+		</div>
+
+		<p>My best friend is Mickey.</p>
+		<hr>
+
+		<div id="menu">
+			<ol class="hide">
+				<li>손흥민</li>
+				<li>박지성</li>
+				<li>김연아</li>
+			</ol>
+		</div>
+		<hr>
+
+		<div id="navi">
+			<h1 class="hide">주요메뉴</h1>
+			<ul>
+				<li><a href="">정치</a></li>
+				<li><a href="">경제</a></li>
+				<li>사회</li>
+				<li>연예</li>
+			</ul>
+		</div>
+	</body>
+</html>

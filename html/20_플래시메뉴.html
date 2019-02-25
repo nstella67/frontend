@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>20_플래시메뉴.html</title>
+		<style>
+			.hide{width:0px;height:0px;margin:0px;padding:0px;font-size:0px;
+					 line-height:0px;}
+			#navi{width:200px;margin:auto;background:silver;}
+			#navi>ul{margin:0px;padding:0px;list-style:none;}
+			#navi>ul>li>a{text-decoration:none;
+								 text-indent:30px;	/*들여쓰기*/
+								 font-weight:bold;color:black;width:200px;height:64px;
+								 display:block;
+								 /*이미지 추가*/
+								 background-image:url(../images/icons.png);
+								 background-repeat:no-repeat;
+								 background-position:right 0; /*오른쪽정렬*/
+								 }
+			/*각 이미지 포지션 지정*/
+			#navi>ul>li:nth-child(2)>a{background-position:right -66px;}
+			#navi>ul>li:nth-child(3)>a{background-position:right -464px;}
+			#navi>ul>li:nth-child(4)>a{background-position:right -528px;}
+
+			/*마우스오버 배경색 바꾸기*/
+			#navi>ul>li:nth-child(1)>a:hover{background-color:hotpink;}
+			#navi>ul>li:nth-child(2)>a:hover{background-color:#ff9933;}
+			#navi>ul>li:nth-child(3)>a:hover{background-color:#669966;}
+			#navi>ul>li:nth-child(4)>a:hover{background-color:#00ccff;}
+
+			/*마우스오버 다양한 스타일 속성*/
+			#navi>ul>li>a:hover{width:240px;color:white;font-size:16px;
+										  text-shadow:2px 2px 2px black;
+										  box-shadow:2px 2px 2px black;
+										  opacity:0.8; /*투명도*/
+						/*라운드*/   border-radius:0 32px 32px 0;
+						/*부드럽게*/transition:width .5s ease;
+										  }
+		</style>
+	</head>
+	<body>
+		<h1 class="hide">플래시메뉴</h1>
+		<div id="navi">
+			<h2 class="hide">주요메뉴</h2>
+			<ul>
+				<li><a href="#">flickr</a></li>
+				<li><a href="#">twitter</a></li>
+				<li><a href="#">newsvine</a></li>
+				<li><a href="#">last.fm</a></li>
+			</ul>
+		</div>
+	</body>
+</html>

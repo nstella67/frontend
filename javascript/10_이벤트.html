@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>10_이벤트.html</title>
+  <style>	
+  .btn1 {width:50px; height:30px; color:blue;}
+  </style>
+ </head>
+ <body onload="alert('어서와!!');" onunload="alert('잘가~');">
+	<!-- onsubmit 해당폼이 서버로 전송될때 
+	     return값이 true일때 해당폼이 전송된다
+	-->
+	<form name="myform" id="myform"
+	      action="ok.jsp"
+	      onsubmit="return true">
+		<input type="button"
+		       value="버튼1"
+			   name="btn1"
+			   id="btn1"
+			   class="btn1"
+			   onclick="alert('버튼1클릭');">
+		<hr>
+		<!-- 페이지 이동 <a href=''></a> -->
+		<input type="button"
+		       value="솔데스크"
+			   name="btn2"
+			   id="btn2"
+			   onclick="location.href='http://www.soldesk.com';">
+		<hr>
+		<input type="button"
+		       value="마우스"
+			   onmouseover="alert('마우스over');"
+			   onmouseout ="alert('마우스out');">
+		<hr>
+		<input type="text" onkeydown="alert('키보드누름');">
+		<hr>
+		<textarea rows="5" cols="10"
+		          onkeydown="alert('키보드누름');"></textarea>
+		<hr>
+		<select onchange="alert('체인지');">
+			<option value="" selected>서울
+			<option value="">제주
+			<option value="">부산
+		</select>
+		<hr>
+		<!-- 입력상자에서
+		     커서가 들어왔을때 onfocus
+			 나갔을때          onblur
+		-->
+		<input type="text" onfocus="alert('커서들어옴');"
+		                   onblur ="alert('커서나감');">
+		<hr>
+		<input type="submit" value="전송">
+		<!-- 기본속성이 서버로 submit 된다 -->
+		<button>등록</button>
+		<input type="image" src="../images/search.png">
+	</form>
+
+	<script>
+    /* 
+       - 자바스크립트는 주로 이벤트를 발생시킨후
+	     함수를 호출함으로써 실행한다
+       - onchange    : 해당 객체가 바뀌었을때
+       - onclick     : 마우스 관련 이벤트
+       - onmouseover : 마우스
+       - onmouseout  : 마우스
+       - onkeydown   : 키보드
+       - onload      : 읽혀졌을때
+	   - onunload
+
+	   - frontend단
+	     화면구현(UI), View
+	     HTML(구조), CSS(표현), JavaScript(동작)
+		                        jQuery
+								JSP
+	*/
+	</script>  
+ </body>
+</html>

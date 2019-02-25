@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>12_로또번호.html</title>
+		<link rel="stylesheet" type="text/css" href="../css/mystyle.css">
+		<script src="../js/myscript.js"></script>
+
+		<style></style>
+	</head>
+
+	<body>
+		<h1>로또번호</h1>
+		<hr>
+		<form name="lottofrm" id="lottofrm">
+			<input type="text" name="n0" id="n0" size="3" readonly>
+			<input type="text" name="n1" id="n1" size="3" readonly>
+			<input type="text" name="n2" id="n2" size="3" readonly>
+			<input type="text" name="n3" id="n3" size="3" readonly>
+			<input type="text" name="n4" id="n4" size="3" readonly>
+			<input type="text" name="n5" id="n5" size="3" readonly>
+			<hr>
+			<input type="button" value="로또번호" onclick="lotto()">
+		</form>
+		
+		<script>
+			function lotto(){
+				var lotto = [];
+
+				for(var a=0; a<6; a++) {
+					lotto[a]=parseInt(Math.random()*45)+1;
+					for(var b=0; b<a; b++) { //회전수증가
+						if(lotto[a]==lotto[b]) {
+							a--;
+						}//if end
+					}
+				}//for end
+				
+				//정렬
+				lotto.sort(function(a, b){return a-b});
+				
+				for(var a=0; a<6; a++) {
+					document.getElementsByTagName("input")[a].value = lotto[a];
+				}//for end
+			}//lotto() end
+
+		</script>
+	</body>
+</html>

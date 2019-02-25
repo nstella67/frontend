@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>07_JSON.html</title>
+  <style>	
+  </style>
+ </head>
+ <body>
+   <script>
+   /* JSON
+     - JavaScript Object Notation
+     - 자바스크립트 객체 표기법
+	 - 속성(name):값(value) 쌍으로 데이터가 구성
+	 - 비동기식 통신(문자단위 통신)에서 XML를 대체하는
+	   주요 데이터 포맷이다
+     - AJAX, NoSQL 등에서 주로 사용
+   */
+   /*
+     var person = ["John", "Doe", 46];     document.write(person.length);
+     document.write(person[0]); //element 요소
+     document.write(person[1]);
+     document.write(person[2]);
+   */
+   /*
+	 var person = [];
+     person["firstName"] = "John";
+     person["lastName"] = "Doe";
+     person["age"] = 46;
+	 document.write(person.length); //0
+     document.write(person[0]);     //undefined 
+     document.write(person[1]);     //undefined 
+     document.write(person[2]);     //undefined 
+   */
+   /*
+      - 배열을 객체화
+	  - name과 value 한쌍으로 구성
+	  - name구성시 " 기호를 생략할 수 있다
+	  - {name:value, "name":value, name:value ~~}
+	  - 예) {one:"Apple", "two":"Orange", three:5}
+   */
+   /* XML 문법
+        <firstName>John</firstName>
+        <lastName>Doe</lastName>
+        <age>46</age>
+   */
+   /*
+     //1)
+     //var person = {firstName:"John", lastName:"Doe", age:46};
+
+	 //2)
+     var person = {"firstName":"John", "lastName":"Doe", "age":46};
+     document.write(person["firstName"]);     
+     document.write(person["lastName"]);     
+     document.write(person["age"]);
+
+     document.write(person.firstName);     
+     document.write(person.lastName);     
+     document.write(person.age);
+   */
+     var persons = [
+	                 {"name":"무궁화", "age":10},
+					 {"name":"개나리", "age":20},
+					 {"name":"진달래", "age":30}
+				   ];
+
+	 document.write(persons.length); //3
+	 for(idx=0; idx<persons.length; idx++) {
+         document.write(persons[idx]); //[object Object] 
+		 document.write(persons[idx].name);
+		 document.write(persons[idx].age);
+	 }//for end
+
+   </script>  
+ </body>
+</html>

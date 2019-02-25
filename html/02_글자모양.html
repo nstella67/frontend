@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>02_글자모양.html</title>
+	</head>
+	<body>
+		<!-- 2 바이트 언어 표현
+			- euc-kr	: 오로지 한글만 조합
+			- utf-8		: 2바이트 언어 모두 조합
+		-->
+
+		<!-- HTML 문서는 공백, 엔터는 적용되지 않음 -->
+
+		서울시 종로구 관철동<br><br/>
+		코아빌딩<br>5층<br>
+		솔데스크<br>
+		나기범&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;바&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;보&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;멍청이<br>
+		1004 정진아<br>
+		<!-- 특수문자 입력
+			&nbsp;	공백
+			&lt;		<
+			&gt;		>
+			&amp;	&
+			&quot;	"
+			&copy;	ⓒ
+		-->
+		특수문자
+		&nbsp; &lt; &gt;	 &amp; &quot; &copy;
+		<br>
+
+
+		<!-- 수평선 -->
+		<hr>
+		<hr width="50px">	<!-- <hr width="50"> -->
+		<hr width="50%">
+		<!-- <hr> element 요소, width 속성(property, attribute) -->
+
+		<!-- 명령어 중복. 닫는 태그 순서 주의 -->
+		<strong><i><u>대한민국</u></i></strong>
+		<hr>
+
+		<!-- 글자크기, 색상 -->
+		<font color="red">서울특별시</font> <br>
+		<font color='#9966ff'>서울특별시</font> <br>
+		<font color="#cccc00">서울특별시</font> <br>
+
+		<font color="red" size="1">부산광역시</font> <br>
+		<font color="green" size="3">부산광역시</font> <br>
+		<font color="blue" size="7">부산광역시</font> <br>
+
+		<!-- 제목(문서를 구조화할 때 주로 사용) -->
+		<h1>제주도</h1>
+		<h2>제주도</h2>
+		<h3>제주도</h3>
+		<h4>제주도</h4>
+		<h5>제주도</h5>
+		<h6>제주도</h6>
+	</body>
+</html>

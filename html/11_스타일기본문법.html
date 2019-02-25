@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>11_스타일기본문법.html</title>
+		<style>
+			/*	선택자(Selector) 우형
+				1) .선택자이름	→ 적용할 때 class="선택자이름"
+				2) #아이디이름	→ 문서에서 id=""
+				3) 태그				→ <div> <p> <h1> 등 태그에 직접
+			*/
+			.intro { background-color: yellow; }
+			#firstname { background-color: yellow;
+								width:250px;/*가로크기*/	height:200px;/*세로크기*/
+							  }
+			h1 {color:red;}
+			input {border:2px;	/*선굵기*/}
+			blockquote {color:hotpink;}
+		</style>
+	</head>
+	<body>
+		<!-- CSS(Cascading Style Sheets) 기본문법
+				- 웹문서의 표현, 일관성유지
+				- CSS3	: 모바일 전용
+				- 대소문자 반드시 구분
+				- 종결문자 ;
+				- 주석 /* */
+				- 스타일 적용하는 방식
+					1) Inline style					: style=""
+					2) Internal style sheet		: <style></style>
+					3) External style sheet	: .css
+		-->
+
+		<!-- 1) Inline style -->
+		<div style="background-color:#ffffff;
+						color:#ff3366 /*글자색*/
+						text-decoration: underline;
+						letter-spacing: 3px;
+						text-shadow: 3px 2px black;
+						font-family: 'Times New Roman', Times, serif;	/*굴림체가능*/
+						font-style: italic;
+						font-size: 30px;
+						font-weight: 900;">
+			대한민국<br>
+			무궁화 꽃이 피었습니다<br>
+			오필승 코리아
+		</div>
+		<hr>
+		<!-- 2) Internal style sheet -->
+		<span class="intro">서울특별시</span>
+		<p class='intro'>부산광역시</p>
+		<pre class="intro">제주도</pre>
+		<div class="intro">울릉도</div>
+		<hr>
+		<div id="firstname">종로구 관철동</div>
+		<hr>
+
+		<h1>국어</h1>
+		<input type="text">
+		<blockquote>영어</blockquote>
+		<hr>
+
+	</body>
+</html>

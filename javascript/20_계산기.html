@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>20_계산기.html</title>
+  <style>
+      .line {border:1px solid #330000;}
+      .txt {border:2px solid #ccffff;
+            text-align: right;
+            font-weight: bold;
+            font-size: 20px;
+            color: black;
+            height: 50px;
+            background-color: #f5f5f5}
+        input[type=button]{
+            width:100%;
+            height:100%;
+            margin: 5px auto 5px auto;
+        }
+        td{
+            height:30px;
+        }
+  </style>
+ </head>
+ <body>
+    <h1>* 미니 계산기 *</h1>
+    <form name="calcfrm" id="calcfrm">
+
+        <table class="line">
+            <tr>
+                <td colspan="4">    <!-- 결과출력상자 -->
+                    <input type="text" 
+                              name="result" id="result"
+                              size="25"
+                              value="0"
+                              class="txt"
+                              readonly>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="button" value="  7  " onclick="inputData(7)"></td>
+                <td><input type="button" value="  8  " onclick="inputData(8)"></td>
+                <td><input type="button" value="  9  " onclick="inputData(9)"></td>
+                <td><input type="button" value="  /  " onclick="operator('/')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="  4  " onclick="inputData(4)"></td>
+                <td><input type="button" value="  5  " onclick="inputData(5)"></td>
+                <td><input type="button" value="  6  " onclick="inputData(6)"></td>
+                <td><input type="button" value="  *  " onclick="operator('*')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="  1  " onclick="inputData(1)"></td>
+                <td><input type="button" value="  2  " onclick="inputData(2)"></td>
+                <td><input type="button" value="  3  " onclick="inputData(3)"></td>
+                <td><input type="button" value="  -  " onclick="operator('-')"></td>
+            </tr>
+            <tr>
+                <td><input type="button" value="  0  " onclick="inputData(0)"></td>
+                <td><input type="button" value="  .  " onclick=""></td>
+                <td><input type="button" value="  =  " onclick="compute()"></td>
+                <td><input type="button" value="  +  " onclick="operator('+')"></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="button" value="  CLEAR  " onclick="cls(this.form)">
+                </td>
+                <td colspan="2">
+                    <input type="button" value="  ←  " onclick="backspace(this.form)">
+                </td>
+            </tr>
+            </table>
+    </form>
+
+	<script>
+        function cls(f){
+            //f → <form name=calcfrm></form>
+            //CLEAR 버튼을 클릭하면 name=result 상자에 0을 대입
+            f.result.value=0;
+        }
+
+        function inputData(su){
+            var f=document.calcfrm;
+            //su변수에 전달값을 name=result 상자에 출력
+            //f.result.value+=su;
+            //Number() 숫자형으로 형변환
+            f.result.value = Number(f.result.value+su);
+        }//inpurData() end
+
+        function backspace(f){
+            //f.result.value=parseInt(f.result.value/10);
+            //마지막글자부터 순차적으로 지우기
+            var result = f.result.value;       //실제값
+            //alert(result);
+            //alert(result.length);   
+            var len=result.length;  //글자갯수
+
+            //2) 처음글자부터 마지막글자를 제외시키고 글자가져오기(substring)
+            //alert(result.substring(0, len-1)); 526← 52
+
+            //3) 분리된 2)문자열을 다시 name=result에 대입
+            //      단, 글자갯수가 1개이면 0으로 대입
+            if(len==1){
+                f.result.value=0;
+            }else{
+                f.result.value=result.substring(0, len-1);
+            }//if end
+        }//backspace() end0000000000
+        
+        // 전역변수
+        var op;                 //연산기호
+        var num1, num2;    //사용자가 입력한 첫번째 수, 두번째 수
+
+        function operator(kind){
+            //1) 사용자가 입력한 연산기호를 op전역변수에 저장
+            op = kind ;
+
+            //2) 현재 name=result가 가지고 있는 값을 첫번째수로 저장
+            num1=Number(document.calcfrm.result.value);
+
+            //3) 두번째수를 입력받기 위해 name=result값을 초기화
+            document.calcfrm.result.value=0;
+        }//operator() end
+
+        function compute(){
+            //계산결과 출력
+            //1) 두번째 수 가져오기
+            num2=Number(document.calcfrm.result.value);
+
+            //2) 계산 및 출력
+            document.calcfrm.result.value=eval(num1+op+num2);
+
+        }//compute() end
+	</script>  
+ </body>
+</html>

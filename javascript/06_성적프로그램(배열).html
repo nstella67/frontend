@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>06_성적프로그램(배열).html</title>
+		<style>
+			
+		</style>
+	</head>
+	<body>
+		<div id="demo"></div>
+		<script>
+			//주의사항 크롬에서 변수명 name 사용할 경우 주의
+			var uname = ["홍길동", "무궁화", "라일락", "진달래", "개나리"];
+			var kor = [100, 35, 75, 95, 85];
+			var eng = [100, 40, 80, 95, 90];
+			var mat = [95, 50, 70, 35, 85];
+			var aver = [0, 0, 0, 0, 0];
+			var rank = [1, 1, 1, 1, 1];
+			var size=uname.length;
+
+			for(var idx=0; idx<size; idx++) {
+				aver[idx]=(kor[idx]+eng[idx]+mat[idx])/3;
+			}//평균
+
+			for(var a=0; a<size; a++) {
+				for(var b=0; b<size; b++) {
+					if(aver[a]<aver[b]) {
+						rank[a]=rank[a]+1;
+					}
+				}
+			}//등수
+
+			var gg=[];
+			var star=["", "", "", "", ""];
+			var special=[];
+			for(var idx=0; idx<size; idx++) {
+				
+				if(aver[idx]<70) {
+					gg[idx]="불합격";
+				}else {
+					if(kor[idx]<40 || eng[idx]<40 || mat[idx]<40) {
+						gg[idx]="재시험";
+					}else {gg[idx]="합격";}
+				}//과락
+
+				
+				for(var a=1; a<=parseInt(aver[idx]/10); a++) {
+					star[idx] += "*";
+				}//평균 10점당 * 한개씩
+
+				if(aver[idx]>=95) {
+					special[idx]="장학생";
+				}
+			}
+
+			//출력
+			var table="";
+			table += "<table border='1'>";
+			for(var idx=0; idx<size; idx++) {
+				table += "<tr>";
+				table += "	<td>"+uname[idx]+"</td>";
+				table += "	<td>"+kor[idx]+"</td>";
+				table += "	<td>"+eng[idx]+"</td>";
+				table += "	<td>"+mat[idx]+"</td>";
+				table += "	<td>"+rank[idx]+"</td>";
+				table += "	<td>"+gg[idx]+"</td>";
+				table += "	<td>"+star[idx]+"</td>";
+				table += "	<td>"+special[idx]+"</td>";
+				table += "</tr>";
+			}
+			table += "</table>";
+
+			document.getElementById("demo").innerHTML=table;
+		</script>
+	</body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>11_회원가입.html</title>
+  <style>	
+  </style>
+
+  <link rel="stylesheet" type="text/css" href="../css/mystyle.css">
+  <script src="../js/myscript.js"></script>
+ </head>
+ <body>
+	<h1>* 회원가입 *</h1>
+	<hr>
+	<form name="memfrm"
+	      id="memfrm"
+		  action="ok.jsp"
+		  onsubmit="return validate()">
+
+	<input type="button" value="버튼1" class="button button1"
+	       onclick="test1()">
+	<input type="button" value="버튼2" class="button button2"
+	       onclick="test2(5, 7)">
+	<input type="button" value="버튼3" class="button button3"
+	       onclick="test3('soldesk')">
+	<hr>
+	아이디 : <input type="text" name="uid" id="uid">
+	<input type="button" value="ID중복확인"
+	       onclick="getID()">
+	<input type="button" value="ID적용"
+	       onclick="setID('happy')">
+	<hr>
+	비밀번호 : <input type="password" name="upw" id="upw">
+	<hr>
+	주민번호 : <input type="text" name="jumin1" id="jumin1"
+	                  size="6" maxlength="6"
+					  onkeyup="moveCursor()">
+			   -
+			   <input type="text" name="jumin2" id="jumin2"
+	                  size="7" maxlength="7">
+	<hr>
+	약관동의 : <input type="checkbox" name="agree" id="agree">
+	<hr>
+	<input type="submit" value="가입">
+	<input type="button" value="가입2" onclick="validate2()">
+	<input type="reset"  value="취소">
+	</form>
+
+	<script>
+    // Frontend (HTML,CSS,JS,jQuery등)단에서는
+	// 이종(서로 다른 문법)간의 데이터를 교류하기 위해
+	// JS, jQuery를 활용한다
+	function getID(){
+		//window객체   : 자바스크립트의 최상위 객체. 생략가능
+		//document객체 : HTML문서의 <body>를 가르키는 객체
+        //1) <input type=text name=uid> 접근
+		//   [object HTMLInputElement]
+		//alert(document.memfrm.uid);
+        //alert(document.memfrm.uid.value);
+
+        //2) <input type=text id=uid> 접근
+		//   [object HTMLInputElement]
+        //alert(document.getElementById("uid"));
+		//alert(document.getElementById("uid").value);
+
+		//3) tag 접근
+		//   [object HTMLCollection]
+		//alert(document.getElementsByTagName("input"));
+
+		//input 요소들중에서 3번째 요소
+		//[object HTMLInputElement]
+		//alert(document.getElementsByTagName("input")[3]);
+		//alert(document.getElementsByTagName("input")[3].value);
+
+		//4) class 접근
+        alert(document.getElementsByClassName("button1"));	
+
+	}//getID() end
+
+	function setID(str) {
+		//1) name 접근
+		//document.memfrm.uid.value = str;
+		
+		//2) id 접근
+		//document.getElementById("uid").value = str;
+		
+		//3) TagName 접근
+		document.getElementsByTagName("input")[3].value = str;
+	}//setID() end
+	
+	function moveCursor() {
+		//1)앞칸 jumin1의 글자를 가져와서 갯수를 파악하고
+        var jumin1 = document.getElementById("jumin1").value;
+		//alert(jumin1);
+
+		//2)글자갯수가 6개가 있으면
+		//  커서를 jumin2로 이동한다
+		if(jumin1.length==6){
+			//커서생성
+			document.getElementById("jumin2").focus();
+		}
+	}//moveCursor() end
+
+	function validate() {
+		//회원가입 폼에 대해서 유효성 검사
+		//1) 아이디 5~10글자 이내 ?
+		var uid = document.getElementById("uid").value;
+		uid = uid.trim();
+		if(uid.length<5 || uid.length>=11){
+			alert("아이디 5~10글자 입력바람!!");
+			document.getElementById("uid").focus();
+			return false;
+		}//if end
+
+		//2) 비번 5~10글자 이내 ?
+		var upw = document.getElementById("upw").value;
+		upw = upw.trim();
+		if(upw.length<5 || upw.length>=11){
+			alert("비번 5~10글자 입력바람!!");
+			document.getElementById("upw").focus();
+			return false;
+		}//if end
+
+		//3) 주민번호 앞칸6글자, 뒷칸7글자를 숫자입력했는지?
+		var jumin1 = document.getElementById("jumin1").value;
+		jumin1 = jumin1.trim();
+		if(jumin1.length!=6 || isNaN(jumin1)){
+			alert("주민번호는 6글자 숫자 입력바람!!");
+			document.getElementById("jumin1").focus();
+			return false;
+		}//if end
+
+		var jumin2 = document.getElementById("jumin2").value;
+		jumin2 = jumin2.trim();
+		if(jumin2.length!=7 || isNaN(jumin2)){
+			alert("주민번호는 7글자 숫자 입력바람!!");
+			document.getElementById("jumin2").focus();
+			return false;
+		}//if end
+
+		//4) 약관동의했는지 ?
+		if(document.getElementById("agree").checked==true){
+			return true;
+		}else{
+			alert("약관에 동의해 주세요!!");
+			return false;
+		}
+
+	}//validate() end
+
+	function validate2(){
+		//<form name=memfrm></form>
+		var frm=document.memfrm;
+		//alert(frm);		//[object HTMLFormElement]
+		//alert(document.memfrm.uid.value);
+		//alert(document.getElementById("uid").value);
+		//alert(frm.uid.value);
+
+		//document.memfrm.action = "ok2.jsp";
+		frm.action = "ok2.jsp";
+
+		//<input type=submit>과 동일한 기능의 자바스크립트 함수
+		//document.memfrm.submit();
+		frm.submit();
+
+		//<input type=reset>과 동일한 기능의 자바스크립트 함수
+		//폼컨트롤요소가 가지고 있던 원래 상태로 복귀
+		//document.memfrm.reset();
+		//frm.reset();
+
+	}//validate2() end
+	</script>  
+ </body>
+</html>

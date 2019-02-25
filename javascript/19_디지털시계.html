@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>19_디지털시계.html</title>
+		<style>
+			.time{background-color: white;
+					color:black;
+					font-weight:bold;
+					font-size: 20px;
+					text-align: center;
+					border: 1px solid black;}
+		</style>
+	</head>
+	<body>
+		<h1>디지털시계</h1>
+		<form name = "myform">
+			<input type="text" 
+					  name="clock" id="clock"
+					  size="25"
+					  class="time">
+			<hr>
+			<input type="button" value="시작" onclick="showtime()">
+			<input type="button" value="중지" onclick="killtime()">
+		</form>
+
+		<script>
+			function showtime(){
+				//현재 시스템의 날짜정보 가져오기
+				var today=new Date();
+				//alert(today.getFullYear());
+				//alert(today.getMonth()+1);	//getMonth() 0~11
+				//alert(today.getDate());
+
+				var str="";
+				//아래와 같이 날짜 정보를 구성해서 <input type=text name=clock>에 출력
+				//2019.01.03 (목) PM 5:06:13
+
+				//현재시간
+				//년월일
+				str += today.getFullYear()+".";	//2019
+
+				if(today.getMonth()+1<10){
+					str += "0";
+				}
+				str += (today.getMonth()+1)+".";	//2019.01
+
+				if(today.getDate()<10){
+					str += "0";
+				}
+				str += today.getDate();					//2019.01.03
+
+				//요일
+				var weekName=["일", "월", "화", "수", "목", "금", "토"];
+				str += " ("+weekName[today.getDay()]+") ";//2019.01.03 (목)
+
+				//시분초
+				if((today.getHours()>12 && today.getHours()<23) || today.getHours()==0){
+					str += "PM "+(today.getHours()-12)+":";
+				}else{
+				str += "AM "+today.getHours()+":";
+				}				//2019.01.03 (목) PM 5:
+
+				if(today.getMinutes()<10){
+					str+="0";
+				}
+				str += today.getMinutes()+":";	//2019.01.03 (목) PM 5:48:
+
+				if(today.getSeconds()<10){
+					str+="0";
+				}
+				str += today.getSeconds();	//2019.01.03 (목) PM 5:48:19
+
+				document.myform.clock.value=str;
+			}//showtime() end
+
+			function killtime(){
+
+			}//killtime() end
+		</script>
+	</body>
+</html>

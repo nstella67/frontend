@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+    <head>
+        <meta charset="UTF-8">
+        <title>22_BOM.html</title>
+    </head>
+
+    <body>
+        <script>
+            // The Browser Object Model (BOM)
+            // window, document, Math, Date, location, Number ~~
+            
+            //1) window object
+            //새창만들기
+            //window.open("URL 또는 파일명", "창이름", "옵션")
+            //부모창과 자식창이 서로 독립적 관계에서 운영된다
+            //window.open("blank.html", "win", "width=350, height=300");
+            //창닫기
+            //window.close();
+
+            //부모창과 자식창을 하나로 운영하고자 하는 경우
+            //부트스트랩의 modal창을 활용할것!!
+
+            //프린트 대화상자 불러오기
+            //window.print();
+
+            /*
+            alert("I am an alert box!");         //경고창 (확인)
+
+            if (confirm("Press a button!")) {   //확인, 취소 → true, false로 반환
+                txt = "You pressed OK!";
+            } else {
+                txt = "You pressed Cancel!";
+            }
+
+            alert("Hello\nHow are you?");   //줄바꿈 \n
+            */
+
+            //2) The window.screen object
+            //   device의 해상도 확인
+            //alert(screen.width);
+            //alert(screen.height);
+
+            //3) The window.location object
+            //   페이지이동
+            //window.location.href = "파일명 또는 URL";
+            //location.href = "http://www.soldesk.com";
+            //location = "";
+            //location.reload();  //현재 페이지 새로고침
+
+            //4) The window.history object
+            //history.back();         //뒤로
+            //history.forward();     //앞으로
+            //history.go(-2);         //뒤로2번
+            //history.go(2);          //앞으로2번
+
+            //5) document.cookie 쿠키
+            //   쿠키
+            //   웹서버가 사용자에게 저장하는 텍스트 파일로 된 정보
+            //   예) 아이디 저장, 오늘창 그만보기
+            //   보안 약하다
+            //   쿠키파일은 웹브라우저의 영향을 받는다
+            
+        </script>
+    </body>
+</html>

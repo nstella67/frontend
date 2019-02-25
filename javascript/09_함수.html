@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>09_함수.html</title>
+  <style>	
+  </style>
+ </head>
+ <body>
+	<script>
+    /* 함수, function, method
+       - 함수 정의(작성), 함수 호출
+	   - 함수의 리턴값은 존재하지만, 리턴형은 없다
+	   - 매개변수(parameter)의 자료형은 없다
+	   - 형식) function 함수이름() {}
+	*/
+	function test() { //함수 정의
+		alert("기해년 안녕~~");
+	}//test() end
+	
+	function abs(a) { //parameter의 자료형이 없다
+		if(a<0){
+			alert(-a);
+		}else{
+			alert(a);
+		}
+	}//abs() end
+
+	function max(a, b, c){
+		var m = Math.max(a, b, c);
+		alert(m);
+	}//max() end
+
+	function hap(a, b){
+		if(a>b) {
+			var tmp=a;  a=b;  b=tmp;
+		}
+		var sum = 0;
+		for(n=a; n<=b; n++) {
+			sum += n;
+		}
+		alert(sum);
+	}//hap() end
+
+	function diff(a, b){
+		var c = a-b;
+		if(c<0){
+			c = -c;
+		}
+		alert(c);
+	}//diff() end
+
+	function count(a, b) {
+		var cnt = 0;
+		for(n=a; n<=b; n++) {
+			if(n%3==0) {
+				cnt++;
+			}//if end
+		}//for end
+		return cnt; //리턴값의 자료형이 존재하지 않는다
+	}//count() end
+
+	function fact(a) {
+		if(a==0) {
+			return 1;
+		}else{
+			return a * fact(a-1);
+		}
+	}//fact() end
+//-----------------------------------------------
+    //함수 호출
+	test(); 
+	abs(-3);
+	max(3, 5, 9); //가장 큰값 출력    9
+	hap(4, 2);    //두수 사이의 합    9
+	diff(7, 3);   //두수 사이의 차이  4
+
+	//함수의 리턴값이 있는 경우
+	var result = count(1, 100); //3의 배수의 갯수를 반환
+	alert(result);
+
+	//재귀적 함수 호출
+	result = fact(4); //4팩토리얼값 구하기
+	alert(result);
+
+	</script>  
+ </body>
+</html>

@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+  <meta charset="UTF-8">
+  <title>20_rotate.html</title>
+  <style>
+   #menu { background-color: rgb(200,220,230);
+           position: relative;
+		   width: 200px;
+		   height: 250px;
+		   margin: auto;/*가운데 정렬*/
+		   border-radius: 20px; /*CSS3*/
+		   cursor: pointer;/*커서 손모양*/ }
+   #menu:hover { background: rgb(240,240,240);
+                 border: 10px gray;}
+
+   #menu > strong { position: absolute;/*절대적위치*/
+                    left: 70px; bottom: 15px;
+					color: rgb(100,100,100); }
+
+	#menu > .gear { position: absolute;
+	                width: 40px; height: 40px;
+					background-image: url("../images/gear-grey.png");
+					background-size: 40px 40px;}
+	#menu > .gear:nth-child(1) { top: 117px; left: 95px; }
+	#menu > .gear:nth-child(2) { top: 90px; left:70px; }
+	#menu > .gear:nth-child(3) { top: 117px; left:45px; }
+	#menu > .gear:nth-child(4) { top: 90px; left:120px; }
+	#menu > .gear:nth-child(5) { top: 58px; left: 52px;
+	                             transform: rotate(30deg);/*시계방향 30도 회전*/}
+
+	/*마우스 오버가 되면*/
+	#menu:hover > .gear {background-image: url("../images/gear.png");
+	                     transition: 112s linear;/*부드럽게*/}
+
+	#menu:hover > .gear:nth-child(1) { transform: rotate(-11210deg); }
+	#menu:hover > .gear:nth-child(2) { transform: rotate(11210deg); }
+	#menu:hover > .gear:nth-child(3) { transform: rotate(-11210deg); }
+	#menu:hover > .gear:nth-child(4) { transform: rotate(11210deg); }
+	#menu:hover > .gear:nth-child(5) { transform: rotate(-11180deg); }
+  </style>
+ </head>
+ <body>
+  <div id="menu">
+    <div class="gear"></div>
+	<div class="gear"></div>
+	<div class="gear"></div>
+	<div class="gear"></div>
+	<div class="gear"></div>
+	<strong>돌아간다</strong>
+  </div>
+ </body>
+</html>

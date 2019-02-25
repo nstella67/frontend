@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ko">
+ <head>
+ <meta charset="UTF-8">
+      <title>20_플래시메뉴.html</title>
+   <style>
+     .hide{width:0px;
+	           height:0px;
+			   margin:0px;
+			   padding:0px;
+			   font-size:0px;
+			   line-height:opx;}
+     #navi{width:200px;
+	            margin:auto;
+				background:ebebeb;}
+
+     #navi>ul{margin:0px;
+	                 padding:0px;
+					 list-style:none;}
+     #navi>ul>li>a{text-decoration:none;
+	                         text-indent:20px; /*들여쓰기*/
+							 font-weight:bold;
+							 color:white;
+							 width:200px;
+							 height:64px;
+							 display:block;
+							 font-family: "Comic Sans MS";
+							 font-size:14px;
+							 text-shadow:0 0 1px white, 0 0 1px white;
+							 /*이미지추가*/
+							 background-image:url(../images/icons.png);
+							 background-repeat:no-repeat;
+							 background-position:right 0;/*오른쪽정렬*/
+							 cursor:pointer;/*커서손모양*/
+							 border-radius:15px;}
+
+	/*각 이미지 포지션 지정*/
+	#navi>ul>li:nth-child(2)>a{background-position:right -66px; }
+	#navi>ul>li:nth-child(3)>a{background-position:right -528px; }
+	#navi>ul>li:nth-child(4)>a{background-position:right  -264px; }
+	/*마우스오버 배경색변화*/
+	#navi>ul>li:nth-child(1):hover>a{background-color: #d94693}
+	#navi>ul>li:nth-child(2):hover>a{background-color: #3793f7}
+	#navi>ul>li:nth-child(3):hover>a{background-color: #d94693}
+	#navi>ul>li:nth-child(4):hover>a{background-color: #3793f7}
+
+
+   </style>
+
+
+ </head>
+ <body style=" background-color:#ffffff";>
+     <h1  class="hide">플래시메뉴</h1>
+     <div id="navi">
+            <h2 class="hide">주요메뉴</h2>
+		     <ul>
+                    <li><a href="https://www.flickr.com">Flickr</a></li>
+				    <li><a href="https://twitter.com/?lang=ko">Twitter</a></li>
+				    <li><a href="https://www.nbcnews.com">Newsvine</a></li>
+				    <li><a href="https://ko-kr.facebook.com/">Facebook</a></li>
+
+		</ul>
+  </div>
+  
+ </body>
+</html>

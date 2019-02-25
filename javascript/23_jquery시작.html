@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>23_jquery시작.html</title>
+	</head>
+
+	<body>
+		
+		<form name="memfrm">
+			<input type="text" name="uid" id="uid" value="soldesk">
+		</form>
+
+		<!-- jQuery 라이브러리 사용법 -->
+		<!-- 1) 해당사이트 직접 링크 -->
+		<!--  
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+		-->
+
+		<!-- 2) jQuery 라이브러리 다운 -->
+		<!-- jquery.com -->
+		<script src="../js/jquery-3.3.1.min.js"></script>
+
+		<!-- 사용자가 작성하는 코드 -->
+		<script>
+			/*  JavaScript기반 오픈소스 → .js 라이브러리
+				jQuery / AJAX / AngularJS / moment / underscore / Bootstrap
+				시각화 : chart / d3 등등
+			*/
+
+			// jQuery
+			//		jQuery is a JavaScript Library
+
+			//1) 
+			/*
+			$(document).ready(function(){
+				alert("jQuery 시작");
+			});
+			*/
+
+			//2)
+			/*
+			$(function(){
+				alert("jQuery 시작");
+			});
+			*/
+
+			//3) jquery() 축약형 → $
+			//alert($);		//function(e,t){return new w.fn.init(e,t)}
+
+			//<body>본문에 있는 soldesk 접근
+			//1) JavaScript
+			//name=memfrm
+			//name=uid
+			alert(document.memfrm.uid.value);
+
+			//id=uid
+			alert(document.getElementById("uid").value);
+
+			//2) jQuery
+			//id=uid
+			alert($("#uid").val());
+
+		</script>
+	</body>
+</html>

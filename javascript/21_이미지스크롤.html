@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8">
+		<title>21_이미지스크롤.html</title>
+		<style>
+			#myfilm{ position:absolute;
+						left:100px;
+						top:10px;
+						width:270px;
+						height:150px;
+						background-color: white;
+						overflow:hidden;
+			}
+		</style>
+	</head>
+
+	<script>
+		//1) 스크롤 하고자 하는 이미지를 전역변수에 대입
+		var ctnt = [];
+		ctnt[0] = "<img src='../images/tenor (3).gif' width='85'>";
+		ctnt[1] = "<img src='../images/tenor (5).gif' width='85'>";
+		ctnt[2] = "<img src='../images/tenor (12).gif' width='85'>";
+		ctnt[3] = "<img src='../images/tenor (11).gif' width='85'>";
+		ctnt[4] = "<img src='../images/tenor (9).gif' width='85'>";
+		ctnt[5] = "<img src='../images/tenor (6).gif' width='85'>";
+		ctnt[6] = "<img src='../images/tenor (4).gif' width='85'>";
+		ctnt[7] = "<img src='../images/tenor (7).gif' width='85'>";
+
+		//2) 1)에서 준비한 이미지를 id=myfilm에 배치하기
+		function start(){
+			//document.write("<div id='area0' style='position:absolute; top:0px; left:0px;'>");
+			//document.write(ctnt[0]);
+			//document.write("</div>");
+
+			//document.write("<div id='area1' style='position:absolute; top:0px; left:90px;'>");
+			//document.write(ctnt[1]);
+			//document.write("</div>");
+
+			for(var a=0; a<8; a++){
+				document.write("<div id='area"+a+"' style='position:absolute; top:0px; left:"+90*a+"px;'>");
+				document.write(ctnt[a]);
+				document.write("</div>");
+			}//for end
+
+			//3초 후에 scroll함수 1번 호출
+			setTimeout(scroll, 3000);
+		}//start() end
+
+		function scroll(){
+			//3) 이미지 스크롤
+			//alert("scroll함수호출");
+			//alert(document.getElementById("area0").style);
+			//alert(document.getElementById("area0").style.left);
+
+			//id=area0의 왼쪽 여백을 가져와서 -10만큼 줄임
+			//var tmp=document.getElementById("area0").style;
+			//tmp.left=parseInt(tmp.left)-10+"px";
+			//반복문
+
+			//id=area0~area7까지 동시에 왼족여백 줄임
+			for(var a=0; a<8; a++){
+				var tmp=document.getElementById("area"+a+"").style;
+				tmp.left=parseInt(tmp.left)-10+"px";
+
+				//4) 이미지 순환
+				if(parseInt(tmp.left)<=-90){
+					tmp.left=90*(8-1)+"px";
+				}//if end
+			}//for end
+
+			timer=setTimeout(scroll, 1000);
+		}//scroll() end
+	
+		var timer;
+		function killtime(){
+			clearTimeout(timer);
+		}//killtime() end
+	</script>
+
+	<body onunload="killtime()">
+		<!-- 이미지가 스크롤되는 위치 -->
+		<div id="myfilm">
+			<script>start();</script>
+		</div>
+	</body>
+</html>
