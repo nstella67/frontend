@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" ng-app="myApp">
 <head>
 <meta charset="utf-8">
 <title>angular 시작</title>
@@ -18,8 +18,32 @@
     }
 </style>
 </head>
-<body>
+<body ng-controller="myCtrl">
     <h1>Angular를 이용해봅시다.^-^</h1>
+    <div id="txtBox">
+        <input type="text" ng-model="txt">
+        <h2 ng-bind="txt">안녕하세요</h2>
+        <h3>{{txt}}</h3>
+    </div>
 
+    <script src="js/angular.min.js"></script>
+    <script>
+        // 모듈(module), 라이브러리(jar), 팩키지(package)
+        // → 특정한 기능을 내포하고 있는 것을 통칭
+        // → 함수형태로 불러서 사용
+        // → 함수, function, method, procedure
+        
+        //앵귤러 모듈 생성
+        //angular.module("앵귤러앱이름", [모듈이름]);
+        var app=angular.module("myApp", []);
+
+        //컨트롤러 생성 → Model과 View 연결되는 공간 지정
+        //                   → app.controller("컨트롤러이름", []);
+        app.controller("myCtrl", [function(){
+            alert("test");  //myCtrl가 동작되는지 확인
+        }]);//controller() end
+
+
+    </script>
 </body>
 </html>

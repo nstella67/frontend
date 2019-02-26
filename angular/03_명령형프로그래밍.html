@@ -36,7 +36,25 @@
 
 <script src="js/jquery.js"></script>
 <script>
+    $("#toggle").click(function(){
+        //alert("test");
+        //alert($(this).attr("checked"));     //undefined
+        //alert($(this).prop("checked"));   //true
 
+        var toggle=$(this).prop("checked");
+        if(toggle){  //체크박스 누르면
+            $(this).next().text("보이기");
+            $("#img1").show();
+            $("#img2").hide();
+            $("#toggleImg").addClass("mini");
+        }else{
+            $(this).next().text("숨기기");
+            //$("#toggleImg").hide();
+            $("#img1").hide();
+            $("#img2").show();
+            $("#toggleImg").removeClass("mini");
+        }//if end
+    }); //click end
 </script>
 </body>
 </html>

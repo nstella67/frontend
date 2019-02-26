@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" ng-app="exApp">
 <head>
 <meta charset="utf-8">
 <title>선언형 프로그래밍</title>
@@ -28,16 +28,36 @@
 </head>
 <body>
     <h1>선언형 프로그래밍은?</h1>
-    <div id="box">
+    <div id="box" ng-controller="myCtrl">
         <p>
-            <input type="checkbox" id="toggle" >
-            <label for="toggle">보이기</label>
+            <input type="checkbox" id="toggle" ng-model="toggleA">
+            <label for="toggle">{{toggleA?"보이기":"숨기기"}}</label>
         </p>
-        <img src="poster/poster3.png" width="300" id="toggleImg" />
-        <img src="poster/poster4.png" width="300" id="img1"/>
-        <img src="poster/poster6.png" width="300" id="img2"/>
+        <img src="poster/poster3.png" width="300" id="toggleImg" ng-class="{mini:toggleA}"/>
+        <img src="poster/poster4.png" width="300" id="img1" ng-show="toggleA"/>
+        <img src="poster/poster6.png" width="300" id="img2" ng-hide="toggleA"/>
     </div>
 
+    <!-- angular import -->
+    <script src="js/angular.min.js"></script>
+    <script>
+        // angular directive   : ng-
+        // angular moduel 선언 → angular.module("앵귤러앱이름", [모듈이름])
+        var app=angular.module("exApp", []);
+
+        //컨트롤러 지정
+        //app.controller("컨트롤러지정", [])
+        // Model과 View가 서로 공유하는 저장공간
+        // Backend 측 : page, request, session, application
+        //                  → pageContext.setAttribute("변수", 값)
+        //                  → pageContext.getAttribute("변수")
+        // Frontend 측 : $scope 객체
+        //["$scope", function(앞의 "$scope"의 값을 받는 매개변수){}]
+        app.controller("myCtrl", ["$scope", function($scope){
+            //alert("test");
+        }]); //controller end
+        
+    </script>
 
 </body>
 </html>

@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" ng-app="repeatApp">
 <head>
+    <meta charset="utf-8">
 <title>영화내용 출력페이지</title>
 <link rel="stylesheet" href="css/kakao.font.css" />
 <style>
@@ -34,16 +35,37 @@
     }
 </style>
 </head>
-<body>
-    <h1>영화목록<em>?</em>개</h1>
-    <button>삭제</button>
+<body ng-controller="myCtrl">
+    <h1>영화목록<em>{{movies.length}}</em>개</h1>
+    <button ng-click="deleteMovie(movies)">삭제</button>
     <ul>
-        <li>
-            <img src="poster/p1.png" width="160" />
-            <h3>아수라</h3>
+        <li ng-repeat="movie in movies">
+            <img src="poster/{{movie.poster}}" width="160" />
+            <h3>{{movie.name}}</h3>
         </li>
     </ul>
 
+    <script src="js/angular.min.js"></script>
+    <script>
+        var app=angular.module("repeatApp", []);
+        // $scope : View와 Controller 연결해서 Model 접근 가능
+        // $http : jQuery에서 $.ajax()와 동일한 기능의 객체
+        app.controller("myCtrl", ["$scope", "$http", function($scope, $http){
+            var promise=$http({"url":"json/movies.json"});
+            promise.success(function (result){
+                //alert(result); 서버에서 응답받은 데이터
+                //서버에서 응답받은 데이터를 현재페이지 View에서 공유할 수 있도록 
+                $scope.movies=result;
+            });//success() end
+
+            //삭제버튼을 클릭했을 때 호출하는 deleteMovie() 정의
+            $scope.deleteMovie=function(movies){
+                movies.shift();
+            };  //deleteMovie() end
+        }]);//controller() end
+        
+        
+    </script>
 
 </body>
 </html>

@@ -31,6 +31,16 @@
 
 <script src="js/jquery.js"></script>
 <script>
+    // <input type=text>에 입력할때마다 그 입력 값을 h2, h3 요소에 출력
+    // 1) input요소에 이벤트 리스너를 붙임
+    $("input").keyup(function(){
+        //2) input요소의 글자를 얻어온다
+        var value=$("input").val();
+        
+        //3) h2, h3요소 선택한 후 값 세팅
+        $("h2").text(value);
+        $("h3").text(value);
+    }); //keyup() end
 
 </script>
 </body>

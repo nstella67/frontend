@@ -9,8 +9,13 @@
         <p>* AngularJS 테스트 *</p>
         <p>이름 : <input type="text" ng-model="name"></p>
         <p ng-bind="name"></p>
+        <p>{{name}}</p>     <!-- ng-bind(11행)랑 같은 표현 -->
     </div>
-
+    <!-- ng-    : Directive 
+          ng-app        : 앵귤러 앱지정
+          ng-model     : 실제 데이터
+          ng-bind       : 출력. 약자{{ }}
+     -->
 <!-- angular import -->
 <script src="js/angular.min.js"></script>
 <script>
