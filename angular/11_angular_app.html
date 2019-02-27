@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" ng-app="boxOfficeApp">
 <head>
 <meta charset="utf-8">
 <title>Movie BoxOffice</title>
@@ -22,15 +22,20 @@
         </div>
     </div>
 
-    <div class="main">
+    <div class="main" ng-controller="myCtrl">
         <div class="container">
             <h2>박스오피스</h2>
             <ul>
-                <li class="col-md-4">
+                <li class="col-md-4" ng-repeat="movie in movies">
                     <div class="thumbnail">
+                        <img src="poster/{{movie.poster}}">
+                        <h3 class="title">{{movie.name}}</h3>
+                        <h3 class="title" ng-bind="movie.name"></h3>
+                        <h4 ng-bind="movie.release|date:'yyyy년M월d일'"></h4>
+                        <strong class="price">{{movie.price|currency:"\\":0}}</strong>
                         <div class="rating">
-                            <button class="likes"></button>
-                            <button class="dislikes"></button>
+                            <button class="likes" ng-click="increaseLikes(movie)">{{movie.likes}}</button>
+                            <button class="dislikes" ng-click="increaseDislikes(movies, $index)">{{movie.dislikes}}</button>
                         </div><!--//rating-->
                     </div><!--//thumbnail-->
                 </li>
@@ -44,6 +49,41 @@
         </div>
     </div>
 
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-locale_ko.js"></script>
+
+    <script>
+        var app=angular.module("boxOfficeApp", []);
+        app.controller("myCtrl", ["$scope", "$http", function($scope, $http){
+            //alert("test");
+            //$scope : 공유장소
+            //$http : jQuery의 $.ajax()와 동일한 기능
+            var promise=$http({url:"json/movies2.json"});
+            promise.error(function(){
+                alert("ERROR!");
+            });//error() end
+
+            promise.success(function(result){
+                //alert(result);
+                //view와 model에서 사용할 수 있도록 공유장소 ($scope)에 올리기
+                $scope.movies=result;
+            });//success() end
+
+            $scope.increaseLikes=function(movie){
+                // alert("좋아요");
+                // alert(movie);
+                movie.likes++;
+            }//end
+
+            $scope.increaseDislikes=function(movies, $index){
+                // alert("싫어요");
+                // alert(movies);
+                // alert($index);
+                movies[$index].dislikes++;
+            }//end
+
+        }]);//controller() end
+    </script>
 
 </body>
 </html>

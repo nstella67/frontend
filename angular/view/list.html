@@ -1,0 +1,8 @@
+<!-- list.html -->
+<h2>영화목록</h2>
+<ul>
+    <li ng-repeat="movie in movies">
+        <!-- 상세보기 -->
+        <a href="#movie/{{movie.no}}">{{movie.name}}</a>    <!-- movie.no primary키라 가정 -->
+    </li>
+</ul>

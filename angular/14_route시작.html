@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" ng-app="routeApp">
 <head>
 <meta charset="utf-8">
     <title>라우터 파라미터</title>
@@ -59,15 +59,47 @@
         <div id="header">
             <h1><i class="fa fa-youtube-play"></i> 멋진영화사이트</h1>
             <ul>
-                <li><a href="">영화목록</a>
-                <li><a href="">영화등록</a>
-                <li><a href="">마이페이지</a>
+                <li><a href="#movie">영화목록</a>
+                <li><a href="#add">영화등록</a>
+                <li><a href="#mypage">마이페이지</a>
             </ul>
         </div>
         <div id="content">
+            <!-- ng-view 디렉티브 안에 view 내용들이 변결되어 출력 -->
+            <ng-view></ng-view>
         </div>
         <div id="footer">&copy; 2016 jna.com</div>
     </div>
 
+    <script src="js/angular.min.js"></script>
+    <!-- Routing 하기 위한 오픈 소스 -->
+    <script src="js/angular-route.min.js"></script>
+    <script>
+        /*
+            - Routing
+            → SPA(Single Page Application)에서 페이지 로딩을 다시 하지 않고 다른 페이지를 불러올 수 있다
+        */
+       var app=angular.module("routeApp", ["ngRoute"]);
+       /*
+       app.controller()
+
+       // View, Model, Controller를 연결
+       app.config()     // → "ngRoute" 모듈을 사용할 경우
+                           // → View, Model, Controller를 연결
+        */
+       app.config(function($routeProvider){
+            //alert("test");
+            //alert($routeProvider); object
+            //$routeProvider.when("주소", "옵션객체");
+            $routeProvider.when("/movie", {template:"<h2>영화목록을 클릭했습니다</h2>"});
+            $routeProvider.when("/add", {templateUrl:"view/insertForm.html"});
+            $routeProvider.when("/mypage", {templateUrl:"view/mypage.html"});
+
+            //default값
+            $routeProvider.otherwise({redirectTo:"/movie"});
+
+       });//config() end
+
+    </script>
 </body>
 </html>

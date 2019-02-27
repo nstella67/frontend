@@ -1,19 +1,58 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" ng-app="filterApp">
 <head>
 <meta charset="utf-8">
     <title>filter</title>
     <link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
-<body>
+<body ng-controller="myCtrl">
     <h1>스마트폰 목록</h1>
-    <label>검색 : <input type="text" placeholder="이름검색" /></label>
-    <label><input type="radio" name="order" />가격</label>
-    <label><input type="radio" name="order" />가격</label>
-    <label><input type="radio" name="order" />출시일</label>
-    <label><input type="radio" name="order" />출시일</label>
+    <label>검색 : <input type="text" placeholder="이름검색" ng-model="word" kr-input/></label>
+    <label><input type="radio" name="order" ng-model="key" value="+price"/>가격(오름)</label>
+    <label><input type="radio" name="order" ng-model="key" value="-price"/>가격(내림)</label>
+    <label><input type="radio" name="order" ng-model="key" value="+release"/>출시일(오름)</label>
+    <label><input type="radio" name="order" ng-model="key" value="-release"/>출시일(내림)</label>
 
-    <ul></ul>
+    <!-- $scope.phoneList값을 <li>요소에 출력 -->
+    <!-- 이름, 가격, 출시일 -->
+    <ul>
+        <li ng-repeat="phone in phoneList | orderBy:key | filter:{'name':word}">
+            <h2>{{phone.name}}</h2>
+            <p>
+                가격 : {{phone.price | currency:"\\":0}} <!-- | currency : $기호 -->
+                /
+                출시일 : {{phone.release | date : "yyyy년MM월dd일"}}
+            </p>
+        </li>
+    </ul>
 
+    <script src="js/angular.min.js"></script>
+    <!-- 국제화 처리(한글) import -->
+    <script src="js/angular-locale_ko.js"></script>
+    <script src="js/angular-ko.input.js"></script>
+    <script>
+        /*
+            - Angular filter
+            1) currency
+            2) date
+            3) filter
+            4) orderBy
+            - 필터사용 → '|'
+            - 옵션      → ':'
+        */
+        var app=angular.module("filterApp", ["kr-input"]);
+        app.controller("myCtrl", ["$scope", function($scope){
+            //alert("test");
+            //$scope 공유 장소 : pageContext와 동일한 개념
+            //$scpoe.변수명
+            //phoneList=[] → 일반 지역변수
+            $scope.phoneList=[
+                {"name":"아이폰7", "price":7458000, "release":new Date("2016-10-21")},
+                {"name":"갤럭시노트7", "price":5136000, "release":new Date("2016-08-19")},
+                {"name":"Y20", "price":9800000, "release":new Date("2016-09-26")},
+                {"name":"엑스페리아", "price":7958000, "release":new Date("2016-07-04")}
+            ];//공유장소의 변수
+        }]);//controller end
+    </script>
 </body>
 </html>

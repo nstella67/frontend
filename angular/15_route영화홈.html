@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" ng-app="routeApp">
 <head>
     <meta charset="utf-8">
     <title>라우터 파라미터</title>
@@ -59,15 +59,49 @@
     <div id="header">
         <h1><i class="fa fa-youtube-play"></i> 멋진영화사이트</h1>
         <ul>
-            <li><a href="">영화목록</a>
-            <li><a href="">영화등록</a>
-            <li><a href="">마이페이지</a>
+            <li><a href="#movie">영화목록</a>
+            <li><a href="#add">영화등록</a>
+            <li><a href="#mypage">마이페이지</a>
         </ul>
     </div>
     <div id="content">
+        <ng-view></ng-view>
     </div>
     <div id="footer">&copy; 2016 jna.com</div>
 </div>
 
+    <script src="js/angular.min.js"></script>
+    <script src="js/angular-route.min.js"></script>
+    <script>
+        var app=angular.module("routeApp", ["ngRoute"]);
+        //데이터 설정
+        app.value("movies", [
+            {"no":0,"poster":"poster1.png","director":"팀 버튼","name":"미스 페레그린과 이상한 아이들의 집","likes":55,"dislikes":32,"price":18000, "release":"2016-09-28"},
+            {"no":1,"poster":"poster2.png","director":"페데 알바레즈","name":"맨 인 더 다크","likes":16,"dislikes":12,"price":15000, "release":"2016-10-05"},
+            {"no":2,"poster":"poster3.png","director":"김성수","name":"아수라","likes":106,"dislikes":12,"price":21000, "release":"2016-09-28"},
+            {"no":3,"poster":"poster4.png","director":"샤론 맥과이어","name":"브리짓 존스의 베이비","likes":106,"dislikes":12,"price":12000, "release":"2016-09-28"},
+            {"no":4,"poster":"poster5.png","director":"김지운","name":"밀 정","likes":106,"dislikes":12,"price":17000, "release":"2016-09-07"},
+            {"no":5,"poster":"poster6.png","director":"클린트 이스트우드","name":"설리: 허드슨강의 기적","likes":106,"dislikes":12,"price":22000, "release":"2016-09-28"}
+        ]);//value() end
+
+        app.config(function($routeProvider){
+            $routeProvider.when("/movie", {templateUrl:"view/list.html", controller:"listCtrl"});//전체목록
+            $routeProvider.when("/movie/:no", {templateUrl:"view/detail.html", controller:"detailCtrl"});//상세보기
+            $routeProvider.when("/add", {templateUrl:"view/insertForm.html"});//등록
+            $routeProvider.when("/mypage", {templateUrl:"view/mypage.html"});//마이페이지
+            $routeProvider.otherwise({redirectTo:"/movie"});
+        });//config() end
+
+        app.controller("listCtrl", ["$scope", "movies", function($scope, movies){
+            $scope.movies=movies;
+        }]);//lsitCtrl end
+
+        app.controller("detailCtrl", ["$scope", "movies", "$routeParams", function($scope, movies, $routeParams){
+            //alert($routeParams.no);
+            //alert(movies);
+            $scope.movie=movies[$routeParams.no];
+        }]);//detailCtrl end
+
+    </script>
 </body>
 </html>
