@@ -1,0 +1,12 @@
+<!-- todo.html -->
+<h2>할일 목록</h2>
+<ul ng-hide="loader">
+    <li ng-repeat="todo in todos">
+        <label>
+            <input type="checkbox" ng-change="updateTodo(todo)" ng-model="todo.end">
+            {{todo.title}}
+        </label>
+        <button ng-click="deleteTodo(todo)">삭제</button>
+    </li>
+</ul>
+<img src="img/tenor (10).gif" ng-show="loader">

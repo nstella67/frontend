@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" ng-app="ajaxApp">
 <head>
 <meta charset="utf-8">
     <title>할일 목록(DB연결)</title>
@@ -12,9 +12,9 @@
 
         #header {
             width:1000px;
-            background:#00BCD4;
+            background:wheat;
             border-bottom:1px solid #424242;
-            border-top:1px solid #00B8D4;
+            border-top:1px solid wheat;
         }
 
         #header ul {
@@ -36,7 +36,7 @@
             height:100px;
             line-height:100px;
             text-align:center;
-            background:#00BCD4;
+            background:wheat;
             border-top:1px solid #424242}
 
     </style>
@@ -46,11 +46,13 @@
     <div id="header">
         <h1>할일앱</h1>
         <ul>
-            <li><a href="">할일목록</a>
-            <li><a href="">할일쓰기</a>
+            <li><a href="#todo">할일목록</a>
+            <li><a href="#write">할일쓰기</a>
         </ul>
     </div>
-    <div id="content"></div>
+    <div id="content">
+        <ng-view></ng-view>
+    </div>
     <div id="footer">&copy; 2016 jna.com</div>
 </div>
 
@@ -58,6 +60,128 @@
 <script src="js/angular.min.js"></script>
 <script src="js/angular-route.min.js"></script>
 <script>
+    /*
+    RESTful Web Service 방식
+    - Representational sfe transter의 줄임말
+    - 하나의 URI는 하나의 고유한 리소스를 대표할 수 있도록 URI를 설계해야 한다는 개념
+    -   GET : 얻어오기(SELECT)
+        POST : 입력(INSERT)
+        PUT : 수정(UPDATE)
+        DELETE : 삭제(DELETE)
+    */
+
+    //라우트 불러오기
+    var app=angular.module("ajaxApp", ["ngRoute"]);
+    //1단계 : 라우팅 등록
+    app.config(function($routeProvider){
+        //<a href="#todo">할일목록</a>
+        $routeProvider.when("/todo", {"templateUrl":"view/todo.html", "controller":"todoCtrl"});
+        //<a href="#write">할일쓰기</a>
+        $routeProvider.when("/write", {"templateUrl":"view/write.html", "controller":"writeCtrl"});
+        
+        $routeProvider.otherwise({"redirectTo":"/todo"});
+    });//config() end
+
+    //2단계 : 목록 출력하기
+    app.controller("todoCtrl", ["$scope", "$http", function($scope, $http){
+        //alert("todoCtrl");
+
+        //3단계 : 데이터 로딩중에서 이미지 보여주기
+        //  1) loader 숨기기
+        $scope.loader=false;
+
+        getTodos();//함수호출
+        function getTodos(){
+            //alert("getTodos()호출");
+
+            //4단계 : 이미지 보여주기
+            $scope.loader=true;
+
+            //mlab.com의 MongoDB에서 document 가져오기
+            var promise=$http({
+                url : "https://api.mlab.com/api/1/databases/soldesk/collections/customers",
+                method : "GET",
+                params : {apiKey:"PisQT3kLpeMsxT9hvAIa-4P-i17imOgL"}
+            });
+
+            promise.error(function(){
+                //alert("ERROR!");
+            });//error end
+
+            promise.success(function(data){
+                //alert("SUCCESS!");
+                //alert(data);
+                $scope.todos=data;
+
+                //5단계 : 로딩 이미지 숨기기
+                $scope.loader=false;
+            });//success end
+
+        };//getTodos() end
+
+        //7단계 : 할일 삭제하는 함수
+        $scope.deleteTodo=function(todo){
+            var promise=$http({
+                url : "https://api.mlab.com/api/1/databases/soldesk/collections/customers/"+todo._id.$oid,
+                method : "DELETE",
+                params : {apiKey:"PisQT3kLpeMsxT9hvAIa-4P-i17imOgL"},
+                data : todo //추가할 메세지
+            });
+
+            promise.error(function(){
+                alert("ERROR!");
+            });//error end
+
+            promise.success(function(){
+                alert("삭제되었습니다");
+                getTodos();//목록함수 호출
+            });//success end
+        };//deleteTodo() end
+
+        //8단계 : 할일 수정하는 함수
+        $scope.updateTodo=function(todo){
+            var promise=$http({
+                url : "https://api.mlab.com/api/1/databases/soldesk/collections/customers/"+todo._id.$oid,
+                method : "PUT",
+                params : {apiKey:"PisQT3kLpeMsxT9hvAIa-4P-i17imOgL"},
+                data : todo //수정할 메세지
+            });
+
+            promise.error(function(){
+                alert("ERROR!");
+            });//error end
+
+            promise.success(function(){
+                alert("수정되었습니다");
+                getTodos();//목록함수 호출
+            });//success end
+        }//updateTodo() end
+    }]);//todoCtrl end
+
+    //6단계 : 할일쓰기
+    app.controller("writeCtrl", ["$scope", "$http", "$location", function($scope, $http, $location){
+        //alert("writeCtrl");
+        $scope.writeTodo=function(title){
+            //서버에 저장할 todo 객체 생성
+            var todo={"title":title, "end":false};
+            var promise=$http({
+                url : "https://api.mlab.com/api/1/databases/soldesk/collections/customers",
+                method : "POST",
+                params : {apiKey:"PisQT3kLpeMsxT9hvAIa-4P-i17imOgL"},
+                data : todo //추가할 메세지
+            });
+
+            promise.error(function(){
+                alert("ERROR!");
+            });//error end
+
+            promise.success(function(){
+                //쓰기 성공시 목록페이지로 이동
+                $location.path("/todo");
+            });//success end
+
+        };//writeTodo() end
+    }]);//writeCtrl end
 
 </script>
 </body>
